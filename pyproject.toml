@@ -1,0 +1,94 @@
+[tool.pyright]
+venv = ".venv"
+venvPath = "."
+include = ["src"]
+exclude = ["**/versions", "**/__pycache__"]
+defineConstant = { DEBUG = true }
+reportMissingImports = true
+reportMissingTypeStubs = false
+reportUnusedVariable = true
+pythonVersion = "3.11"
+pythonPlatform = "Linux"
+[tool.pyright.analysis]
+extraPaths = ["./src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+select = [
+    "A", # prevent using keywords that clobber python builtins
+    "B", # bugbear: security warnings
+    "E", # pycodestyle
+    "F", # pyflakes
+    "ISC", # implicit string concatenation
+    "UP", # alert you when better syntax is available in your python version
+    "RUF", # the ruff developer's own rules
+]
+ignore = [
+    "E712", # Allow using if x == False, as it's not always equivalent to if x.
+    "E501", # Supress line-too-long warnings: trust black's judgement on this one.
+    "A003", # Allow shawoding class attribute: django uses id.
+    "B904", # Allow unchained exceptions: it's fine to raise 404 in django.
+    "RUF001", # Checks for ambiguous Unicode characters in strings.
+    "F401", # Checks for unused imports.
+]
+fixable = [
+    "F401", # Remove unused imports.
+    "NPY001", # Fix numpy types, which are removed in 1.24.
+]
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+    "migrations",
+    "versions",
+]
+[tool.ruff.format]
+docstring-code-format = true
+docstring-code-line-length = 20
+
+[tool.poetry]
+name = "FastAPI Starter"
+version = "0.1.0"
+description = "FastAPI Starter"
+authors = ["<gorelovge@cifra-k.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+autoflake = "^2.2.1"
+ruff = "^0.3.5"
+pyright = "^1.1.359"
+fastapi = "^0.110.2"
+uvicorn = "^0.29.0"
+pydantic = "^2.7.0"
+psycopg2-binary = "^2.9.9"
+asyncpg = "^0.29.0"
+sqlalchemy = "^2.0.29"
+sqladmin = "^0.16.1"
+pydantic-settings = "^2.2.1"
+python-dotenv = "^1.0.1"
+alembic = "^1.13.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

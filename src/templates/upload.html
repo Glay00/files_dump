@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Files Dump</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        input[type="file"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        input[type="submit"]:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .file-list {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .file-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        .file-list li {
+            margin: 5px 0;
+            background: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .file-list a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        .file-list a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function checkFileSelected() {
+            const fileInput = document.querySelector('input[type="file"]');
+            const submitButton = document.querySelector('input[type="submit"]');
+            submitButton.disabled = !fileInput.files.length;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Files Dump</h1>
+        <form action="/upload/" enctype="multipart/form-data" method="post">
+            <input type="file" name="file" onchange="checkFileSelected()">
+            <input type="submit" value="Upload" disabled>
+        </form>
+    </div>
+</body>
+</html>
